@@ -5,6 +5,8 @@ except ImportError:
 import numpy as np
 
 # ================================================================================================================
+# Testing Purpose
+# ================================================================================================================
 """
 problem0 = np.array([[1,2,3], [4,5,6], [7,8,0]]) # depth 0
 problem1 = np.array([[1,2,3], [4,5,6], [0,7,8]]) # depth 2
@@ -261,47 +263,50 @@ def general_search(problem, search_algo):
 # ================================================================================================================
 # Main Function
 # ================================================================================================================
-print('Start')
-search_algo = int(input("Type 1 for Uniform Cost Search, 2 for Heuristic(Misplaced Tile), 3 for Heuristic(Manhattan Distance): "))
-choice = input('Do you want to use sample input: y or n: ')
+def main():
+    print('Start')
+    search_algo = int(input("Type 1 for Uniform Cost Search, 2 for Heuristic(Misplaced Tile), 3 for Heuristic(Manhattan Distance): "))
+    choice = input('Do you want to use sample input: y or n: ')
 
-if choice == 'y':
-    print('problem0 = np.array([[1,2,3], [4,5,6], [7,8,0]]) # depth 0')
-    print('problem1 = np.array([[1,2,3], [4,5,6], [0,7,8]]) # depth 2')
-    print('problem2 = np.array([[1,2,3], [5,0,6], [4,7,8]]) # depth 4')
-    print('problem3 = np.array([[1,3,6], [5,0,2], [4,7,8]]) # depth 8')
-    print('problem4 = np.array([[1,3,6], [5,0,7], [4,8,2]]) # depth 12')
-    print('problem5 = np.array([[1,6,7], [5,0,3], [4,8,2]]) # depth 16')
-    print('problem6 = np.array([[7,1,2], [4,8,5], [6,3,0]]) # depth 20')
-    print('problem7 = np.array([[0,7,2], [4,6,1], [3,5,8]]) # depth 24')
-    val = int(input('Type 0 - 7: '))
-    if val == 0:
-        problem = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
-    if val == 1:
-        problem = np.array([[1, 2, 3], [4, 5, 6], [0, 7, 8]])
-    if val == 2:
-        problem = np.array([[1, 2, 3], [5, 0, 6], [4, 7, 8]])
-    if val == 3:
-        problem = np.array([[1, 3, 6], [5, 0, 2], [4, 7, 8]])
-    if val == 4:
-        problem = np.array([[1, 3, 6], [5, 0, 7], [4, 8, 2]])
-    if val == 5:
-        problem = np.array([[1, 6, 7], [5, 0, 3], [4, 8, 2]])
-    if val == 6:
-        problem = np.array([[7, 1, 2], [4, 8, 5], [6, 3, 0]])
-    if val == 7:
-        problem = np.array([[0, 7, 2], [4, 6, 1], [3, 5, 8]])
-elif choice == 'n':
-    problem = [[], [], []]
-    for i in range(3):
-        for j in range(3):
-            print('Enter number at index', [i],[j])
-            item = int(input())
-            problem[i].append(item)
+    if choice == 'y':
+        print('problem0 = np.array([[1,2,3], [4,5,6], [7,8,0]]) # depth 0')
+        print('problem1 = np.array([[1,2,3], [4,5,6], [0,7,8]]) # depth 2')
+        print('problem2 = np.array([[1,2,3], [5,0,6], [4,7,8]]) # depth 4')
+        print('problem3 = np.array([[1,3,6], [5,0,2], [4,7,8]]) # depth 8')
+        print('problem4 = np.array([[1,3,6], [5,0,7], [4,8,2]]) # depth 12')
+        print('problem5 = np.array([[1,6,7], [5,0,3], [4,8,2]]) # depth 16')
+        print('problem6 = np.array([[7,1,2], [4,8,5], [6,3,0]]) # depth 20')
+        print('problem7 = np.array([[0,7,2], [4,6,1], [3,5,8]]) # depth 24')
+        val = int(input('Type 0 - 7: '))
+        if val == 0:
+            problem = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
+        if val == 1:
+            problem = np.array([[1, 2, 3], [4, 5, 6], [0, 7, 8]])
+        if val == 2:
+            problem = np.array([[1, 2, 3], [5, 0, 6], [4, 7, 8]])
+        if val == 3:
+            problem = np.array([[1, 3, 6], [5, 0, 2], [4, 7, 8]])
+        if val == 4:
+            problem = np.array([[1, 3, 6], [5, 0, 7], [4, 8, 2]])
+        if val == 5:
+            problem = np.array([[1, 6, 7], [5, 0, 3], [4, 8, 2]])
+        if val == 6:
+            problem = np.array([[7, 1, 2], [4, 8, 5], [6, 3, 0]])
+        if val == 7:
+            problem = np.array([[0, 7, 2], [4, 6, 1], [3, 5, 8]])
+    elif choice == 'n':
+        problem = [[], [], []]
+        for i in range(3):
+            for j in range(3):
+                print('Enter number at index', [i],[j])
+                item = int(input())
+                problem[i].append(item)
 
-problem = np.array(problem)
-general_search(problem, search_algo)
+    problem = np.array(problem)
+    general_search(problem, search_algo)
 
-print('End')
+    print('End')
 
+if __name__ == "__main__":
+    main()
 # end of code
