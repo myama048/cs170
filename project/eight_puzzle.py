@@ -61,7 +61,7 @@ def heuristic_misplaced_tile(node): # take curr node as input and return heurist
     cnt = 0
     for row_idx in range(len(node)):
         for col_idx in range(len(node)):
-            if (node[row_idx][col_idx] != goal_state[row_idx][col_idx]):
+            if (node[row_idx][col_idx] != 0) and (node[row_idx][col_idx] != goal_state[row_idx][col_idx]):
                 cnt += 1
     return cnt
 
@@ -71,7 +71,7 @@ def heuristic_manhattan_dist(node): # take curr node as input and return heurist
 
     for row_idx in range(len(node)):
         for col_idx in range(len(node)):
-            if (node[row_idx][col_idx] != goal_state[row_idx][col_idx]):
+            if (node[row_idx][col_idx] != 0) and (node[row_idx][col_idx] != goal_state[row_idx][col_idx]):
                 cp_row_idx = row_idx
                 cp_col_idx = col_idx
                 idx = np.where(goal_state == node[row_idx][col_idx]) # find idx of node[row_idx][col_idx] in goal_state
@@ -256,6 +256,7 @@ def general_search(problem, search_algo):
 # ================================================================================================================
 def main():
     print('Start\n')
+
     search_algo = int(input("Enter 1 for Uniform Cost Search, 2 for Heuristic(Misplaced Tile), 3 for Heuristic(Manhattan Distance): "))
     choice = input('Do you want to use sample input: y or n: ')
 
@@ -298,6 +299,7 @@ def main():
     general_search(problem, search_algo)
     end = time.time()
     print('Execution Time: ', end - start, 's')
+
     print('\nEnd')
 
 if __name__ == "__main__":
