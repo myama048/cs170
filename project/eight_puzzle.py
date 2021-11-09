@@ -4,10 +4,6 @@
 # Course: CS170
 # Project 1 - Eight Puzzle
 # ================================================================================================================
-try:
-    import queue
-except ImportError:
-    import Queue as queue
 import numpy as np
 import time
 
@@ -23,6 +19,7 @@ problem4 = np.array([[1,3,6], [5,0,7], [4,8,2]]) # depth 12
 problem5 = np.array([[1,6,7], [5,0,3], [4,8,2]]) # depth 16
 problem6 = np.array([[7,1,2], [4,8,5], [6,3,0]]) # depth 20
 problem7 = np.array([[0,7,2], [4,6,1], [3,5,8]]) # depth 24
+problem8 = np.array([[8,3,5], [4,1,6], [2,7,0]]) # depth 14
 """
 #problem_tuple = (0 , problem2)
 #problem_tuple = (0 + heuristic_misplaced_tile(problem2), problem2) # for uniform cost search
@@ -269,9 +266,10 @@ def main():
         print('problem5 = np.array([[1,6,7], [5,0,3], [4,8,2]]) # depth 16')
         print('problem6 = np.array([[7,1,2], [4,8,5], [6,3,0]]) # depth 20')
         print('problem7 = np.array([[0,7,2], [4,6,1], [3,5,8]]) # depth 24')
-        val = int(input('Enter 0 - 7: '))
+        print('problem8 = np.array([[1,6,2], [5,0,3], [4,7,8]]) # depth 8')
+        val = int(input('Enter 0 - 8: '))
         if val == 0:
-            problem = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
+            problem = np.array([[1, 2, 3], [4, 5, 6], [7, 0, 8]])
         if val == 1:
             problem = np.array([[1, 2, 3], [4, 5, 6], [0, 7, 8]])
         if val == 2:
@@ -286,6 +284,9 @@ def main():
             problem = np.array([[7, 1, 2], [4, 8, 5], [6, 3, 0]])
         if val == 7:
             problem = np.array([[0, 7, 2], [4, 6, 1], [3, 5, 8]])
+        if val == 8:
+            problem = np.array([[1, 6, 2], [5, 0, 3], [4, 7, 8]])
+
     elif choice == 'n':
         problem = [[], [], []]
         for i in range(3):
@@ -309,5 +310,3 @@ if __name__ == "__main__":
 # end of code
 
 # ===== comment ======
-# return number of max nodes in queue
-# depth
