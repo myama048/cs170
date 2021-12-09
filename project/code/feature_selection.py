@@ -2,7 +2,7 @@
 # Author: Masashi Yamaguchi
 # e-mail: myama048@ucr.edu
 # Course: CS170
-# Project 1 - Feature Selection with Nearest Neighbor
+# Project 2 - Feature Selection with Nearest Neighbor
 # ================================================================================================================
 
 import numpy as np
@@ -45,22 +45,20 @@ def leave_one_cross_validation(df, current_set, feature_to_add): #feature_to_add
     for col in range(1, len(copy_df.axes[1])): # setting all entries in df[col] = 0 except first column which is label
         if (col - 1) not in using_col:
             copy_df.iloc[:, col] = 0
-        #else:
-            #print(col-1, 'is in', using_col)
 
     number_correctly_classified = 0
     #print(copy_df)
 
-    for i in range(len(copy_df.axes[0])):                       # i = {1, 2, 3}, {1,3}
+    for i in range(len(copy_df.axes[0])):
         #print('Looping over i, at the', i + 1, 'location')
         #print('The', i+1, 'th object is in class', int(df.iloc[i,0]))
         nearest_dist = math.inf
         nearest_loc = math.inf
         nearest_label = 0
-        for k in range(len(copy_df.axes[0])):                       # k = {4}, {2,4}
+        for k in range(len(copy_df.axes[0])):
             if i != k:
                 #print('Ask if', i+1, 'is nearest neigbor with', k+1)
-                dist = get_euclidean_dist(copy_df, i, k) # euclian distance
+                dist = get_euclidean_dist(copy_df, i, k) # euclidean distance
                 if dist < nearest_dist:
                     nearest_dist = dist
                     nearest_loc = k
@@ -91,13 +89,12 @@ def main():
     #df = pd.read_csv("../data/Ver_2_CS170_Fall_2021_Small_data__100.txt", sep='  ', header=None)
     #df = pd.read_csv("../data/Ver_2_CS170_Fall_2021_LARGE_data__100.txt", sep='  ')
     #df = pd.read_csv("test.txt", sep='  ', header=None, engine='python')
-    df_s_86_ez = pd.read_csv("../data/Ver_2_CS170_Fall_2021_Small_data__86_ez.txt", sep='  ', header=None, engine='python')
+    df_s_86 = pd.read_csv("../data/Ver_2_CS170_Fall_2021_Small_data__86.txt", sep='  ', header=None, engine='python')
     #print(df)
-    print('sz: ', len(df_s_86_ez.axes[1]))
-    #cross_validation(8)
+    print('sz: ', len(df_s_86.axes[1]))
     #print('feature search: ')
     #print(leave_one_cross_validation(df, current_set, feature_to_add))
-    feature_search(df_s_86_ez)
+    feature_search(df_s_86)
     #feature_search(df)
 
     print('\nEnd')
