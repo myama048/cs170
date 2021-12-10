@@ -12,9 +12,7 @@ from random import randrange
 
 # ================================================================================================================
 
-
 def feature_search(df):
-    print("test")
     n = len(df.axes[1]) - 1 # n = (num of columns in df) - 1
     print('N: ', n)
     #for i in range(len(df.axes[1])):
@@ -34,7 +32,7 @@ def feature_search(df):
 
         print('Adding ', feature_to_add, ' to current set')
         current_set_of_features.append(feature_to_add)
-        print('Current set: ', current_set_of_features)
+        print('Current set: ', current_set_of_features, ',  Accuracy: ', accuracy)
 
 def leave_one_cross_validation(df, current_set, feature_to_add): #feature_to_add startig 0 to n - 2
     #print(df.iloc[ : , 0])
@@ -66,7 +64,7 @@ def leave_one_cross_validation(df, current_set, feature_to_add): #feature_to_add
 
         #print('Object', i+1, 'is class', int(df.iloc[i,0]))
         #print('Its nearest neigbor is', nearest_loc + 1, 'which is in class', nearest_label)
-        if int(copy_df.iloc[i,0]) == nearest_label:
+        if int(copy_df.iloc[i, 0]) == nearest_label:
             number_correctly_classified += 1
 
     accuracy = number_correctly_classified / len(copy_df.axes[0])
@@ -77,8 +75,11 @@ def leave_one_cross_validation(df, current_set, feature_to_add): #feature_to_add
 def get_euclidean_dist(df, i, k):
     out = 0
     for col in range(1, len(df.axes[1])): # loops col[1] to col[num(cols) - 1] --> every cols except first col
-        out += math.sqrt((df.iloc[i, col] - df.iloc[k, col])**2)
+        #out += math.sqrt((df.iloc[i, col] - df.iloc[k, col])**2)
+        out += ((df.iloc[i, col] - df.iloc[k, col]) ** 2)
+    out = math.sqrt(out)
     return out
+
 
 # ================================================================================================================
 # Main Function
@@ -86,16 +87,14 @@ def get_euclidean_dist(df, i, k):
 def main():
     print('Start\n')
 
-    #df = pd.read_csv("../data/Ver_2_CS170_Fall_2021_Small_data__100.txt", sep='  ', header=None)
-    #df = pd.read_csv("../data/Ver_2_CS170_Fall_2021_LARGE_data__100.txt", sep='  ')
-    #df = pd.read_csv("test.txt", sep='  ', header=None, engine='python')
-    df_s_86 = pd.read_csv("../data/Ver_2_CS170_Fall_2021_Small_data__86.txt", sep='  ', header=None, engine='python')
-    #print(df)
-    print('sz: ', len(df_s_86.axes[1]))
-    #print('feature search: ')
-    #print(leave_one_cross_validation(df, current_set, feature_to_add))
-    feature_search(df_s_86)
-    #feature_search(df)
+    Small_or_LARGE = input('Enter "Small" or "LARGE": ')
+    number = input('Enter 1 - 100: ')
+    file_name = "Ver_2_CS170_Fall_2021_" + Small_or_LARGE  + "_data__" + number +".txt"
+    print('File: ', file_name)
+    file =  "../data/" + file_name
+    df = pd.read_csv(file, sep='  ', header=None, engine='python')
+    feature_search(df)
+
 
     print('\nEnd')
 
