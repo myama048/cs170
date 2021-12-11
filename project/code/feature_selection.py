@@ -32,7 +32,7 @@ def feature_search(df):
 
         print('Adding ', feature_to_add, ' to current set')
         current_set_of_features.append(feature_to_add)
-        print('Current set: ', current_set_of_features, ',  Accuracy: ', accuracy)
+        print('Current set: ', current_set_of_features, ',  Accuracy: ', best_so_far_accuracy)
 
 def leave_one_cross_validation(df, current_set, feature_to_add): #feature_to_add startig 0 to n - 2
     #print(df.iloc[ : , 0])
@@ -80,11 +80,23 @@ def get_euclidean_dist(df, i, k):
     out = math.sqrt(out)
     return out
 
+def default_rate(df):
+    l_1 = 0
+    l_2 = 0
+    for i in range(len(df.axes[0])):
+        if int(df.iloc[i, 0]) == 1:
+            l_1 += 1
+        elif int(df.iloc[i, 0]) == 2:
+            l_2 += 1
+
+    print('max: ', max(l_1, l_2))
+    return max(l_1, l_2) / len(df.axes[0])
 
 # ================================================================================================================
 # Main Function
 # ================================================================================================================
 def main():
+
     print('Start\n')
 
     Small_or_LARGE = input('Enter "Small" or "LARGE": ')
@@ -94,9 +106,10 @@ def main():
     file =  "../data/" + file_name
     df = pd.read_csv(file, sep='  ', header=None, engine='python')
     feature_search(df)
-
+    #print(default_rate(df))
 
     print('\nEnd')
+
 
 if __name__ == "__main__":
     main()
